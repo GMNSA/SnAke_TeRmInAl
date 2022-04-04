@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "snake_game.h"
 #include "snake_game_about.h"
 
 void output_array(int **arr_, int row_, int col_);
@@ -35,7 +36,10 @@ int **create_array(int row_, int col_) {
 
 void test_snake_about() {
 	char *text = read_file(NULL);
-	printf("%s", text);
+	display_about(text);
 
 	free(text);
 }
+
+// -------------------------------------------------------
+

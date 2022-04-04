@@ -6,6 +6,7 @@
 #include "snake_game_menu.h"
 #include "my_sleep.h"
 #include "snake_game_processing.h"
+#include "snake_game_about.h"
 
 e_game_state G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 e_game_state transfowramtion_from_menu_to_game_state(int menu_);
@@ -58,11 +59,18 @@ void game_processing() {
 
 void game_menu() {
 	snake_menu();
-	G_GAME_CURRENT_STATE = transfowramtion_from_menu_to_game_state(menu_selection());
+	G_GAME_CURRENT_STATE = 
+		transfowramtion_from_menu_to_game_state(menu_selection());
 }
 
 void game_about() {
-	printf("about\n");
+	char *text = read_file(NULL);
+	system("clear");
+	display_about(text);
+	if (text) {
+		free(text);
+	}
+	G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 }
 
 void game_exit() {

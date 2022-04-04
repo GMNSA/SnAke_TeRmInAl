@@ -2,8 +2,10 @@
 
 #include "snake_game_about.h"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "f_log_file.h"
+#include "my_sleep.h"
 
 const char *G_FILENAME_ABOUT = "about.txt";
 
@@ -31,10 +33,21 @@ char *read_file(char const *filename_) {
 			create_log(NULL, NULL);
 		} else {
 			fread(text, sizeof(char), size, fio);
-			printf("%s", text);
 		}
 		fclose(fio);
 	}
 
 	return (text);
+}
+
+void display_about(char *text_) {
+	unsigned n_text = strlen(text_);
+	char c = '\n';
+	for (unsigned i = 0; i < n_text; ++i) {
+		printf("%c", text_[i]);
+		sleep_us(1000);
+	}
+	printf("\nPRESS ON KEY");
+	while ((c = getchar() != '\n')) {
+	}
 }
