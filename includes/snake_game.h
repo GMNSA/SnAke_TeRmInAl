@@ -1,8 +1,7 @@
 #ifndef SRC_SNAKE_GAME_H_
 #define SRC_SNAKE_GAME_H_
 
-extern int G_FIELD_WIDTH;
-extern int G_FIELD_HEIGHT;
+#include "snake_options_game.h"
 
 typedef enum {
 	GAME_STATE_INIT = 0,
@@ -20,6 +19,5 @@ void game_processing();
 void game_menu();
 void game_about();
 void game_exit();
-
 
 #endif // SRC_SNAKE_GAME_H_

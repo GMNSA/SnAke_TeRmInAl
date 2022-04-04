@@ -5,12 +5,17 @@
 #include <unistd.h>
 #include "snake_game_menu.h"
 #include "my_sleep.h"
-
-int G_FIELD_WIDTH = 80;
-int G_FIELD_HEIGHT = 25;
+#include "snake_game_processing.h"
 
 e_game_state G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 e_game_state transfowramtion_from_menu_to_game_state(int menu_);
+
+// -------------------------------------------------------
+
+void update();
+void draw();
+
+// -------------------------------------------------------
 
 void game() {
 	int is_run = 1;
@@ -42,11 +47,13 @@ void game() {
 // -------------------------------------------------------
 
 void game_init() {
-	printf("INIT\n");
+	reset_field_game();
+	reset_snake();
 }
 
 void game_processing() {
-	printf("START\n");
+	draw();
+	update();
 }
 
 void game_menu() {
@@ -76,4 +83,15 @@ e_game_state transfowramtion_from_menu_to_game_state(int menu_) {
 		result = GAME_STATE_MENU;
 	}
 	return (result);
+}
+
+// -------------------------------------------------------
+
+void update() {
+	move_snake();
+	input_direction_snake();
+}
+
+void draw() {
+	draw_game_field();
 }

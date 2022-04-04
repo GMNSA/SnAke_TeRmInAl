@@ -14,6 +14,8 @@ void create_log(char const *text_, char const *filename_) {
 	if (text_ == NULL) {
 		if (G_ERROR_LOG == ERROR_LOG_CREATE_DYNAMIC_ARRAY) {
 			text_= "Create Dynamic Array ERROR ";
+		} else if (G_ERROR_LOG == ERROR_LOG_READ_FILE) {
+			text_= "Error Read file ERROR ";
 		} else {
 			text_ = "Ok <----> ";
 		}
