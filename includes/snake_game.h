@@ -10,7 +10,8 @@ typedef enum {
 	GAME_STATE_PROCESSING,
 	GAME_STATE_MENU,
 	GAME_STATE_ABOUT,
-	GAME_STATE_EXIT
+	GAME_STATE_EXIT,
+	GAME_STATE_END_GAME
 } e_game_state;
 
 extern e_game_state G_GAME_CURRENT_STATE;
@@ -21,5 +22,6 @@ void game_processing();
 void game_menu();
 void game_about();
 void game_exit();
+void game_end_game();
 
 #endif // SRC_SNAKE_GAME_H_

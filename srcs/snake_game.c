@@ -8,7 +8,7 @@
 #include "snake_game_processing.h"
 #include "snake_game_about.h"
 
-unsigned G_SPEED_LOOP = 100000;
+unsigned G_SPEED_LOOP = DEFAULT_SPEED;
 e_game_state G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 e_game_state transfowramtion_from_menu_to_game_state(int menu_);
 
@@ -40,6 +40,12 @@ void game() {
 			case GAME_STATE_EXIT:
 				game_exit();
 				is_run = 0;
+				break;
+			case GAME_STATE_END_GAME:
+				game_end_game();
+				break;
+			default:
+				G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 				break;
 		}
 		sleep_us(G_SPEED_LOOP);
@@ -78,6 +84,10 @@ void game_exit() {
 	printf("EXIT\n");
 }
 
+void game_end_game() {
+	printf("END GAME\n");
+}
+
 // -------------------------------------------------------
 
 e_game_state transfowramtion_from_menu_to_game_state(int menu_) {
@@ -101,7 +111,7 @@ void update() {
 	input_direction_snake();
 	add_random_eat(); 
 	if (check_collizion()) {
-		G_GAME_CURRENT_STATE = GAME_STATE_EXIT;  // remove
+		G_GAME_CURRENT_STATE = GAME_STATE_END_GAME;  // remove
 	}
 }
 

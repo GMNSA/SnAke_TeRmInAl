@@ -6,6 +6,8 @@
 #include "f_input.h"
 #include "snake_game_processing.h"
 
+#define STEP_ADD_SNAKE 3
+
 s_field_game G_FIELD_GAME[D_GAME_WIDTH][D_GAME_HEIGHT] = {0};
 s_snake G_SNAKE;
 unsigned G_SCOPE = 0;
@@ -14,6 +16,7 @@ void output_game_field();
 void check_field_boards();
 void default_speed();
 void decrement_speed();
+void ate_the_food(int x, int y);
 
 void draw_game_field(){
 	output_game_field();
@@ -78,13 +81,7 @@ void move_snake() {
 			if (G_FIELD_GAME[x][y].lifecell > 0) {
 				--G_FIELD_GAME[x][y].lifecell;
 			}
-			if (G_FIELD_GAME[x][y].eat == 1 
-					&& G_FIELD_GAME[x][y].lifecell > 1) {
-				G_FIELD_GAME[x][y].eat = 0;
-				++G_SNAKE.length;
-				G_SCOPE += 10;
-			}
-
+			ate_the_food(x, y);
 		}
 	}
 
@@ -175,7 +172,7 @@ void add_random_eat() {
 }
 
 void default_speed() {
-	G_SPEED_LOOP = 100000;
+	G_SPEED_LOOP = DEFAULT_SPEED;
 }
 
 int check_collizion() {
@@ -198,9 +195,18 @@ int check_collizion() {
 }
 
 void decrement_speed() {
-	if (G_SPEED_LOOP > 20000) {
-		G_SPEED_LOOP -= 10000;
-	} if (G_SPEED_LOOP > 15000) {
+	if (G_SPEED_LOOP > 25000) {
 		G_SPEED_LOOP -= 2500;
+	} if (G_SPEED_LOOP > 20000) {
+		G_SPEED_LOOP -= 1000;
+	}
+}
+
+void ate_the_food(int x, int y) {
+	if (G_FIELD_GAME[x][y].eat == 1 
+			&& G_FIELD_GAME[x][y].lifecell > 1) {
+		G_FIELD_GAME[x][y].eat = 0;
+		G_SNAKE.length += STEP_ADD_SNAKE;
+		G_SCOPE += 10;
 	}
 }
