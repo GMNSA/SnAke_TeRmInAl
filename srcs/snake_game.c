@@ -100,6 +100,9 @@ void update() {
 	move_snake();
 	input_direction_snake();
 	add_random_eat(); 
+	if (check_collizion()) {
+		G_GAME_CURRENT_STATE = GAME_STATE_EXIT;  // remove
+	}
 }
 
 // -------------------------------------------------------

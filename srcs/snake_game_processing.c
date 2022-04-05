@@ -54,15 +54,20 @@ void reset_field_game() {
 }
 
 void reset_snake() {
-	G_SNAKE.length = 3;
+	G_SNAKE.length = 9;
 	G_SNAKE.dir_x = 1;
 	G_SNAKE.dir_y = 0;
 	G_SNAKE.pos_x = D_GAME_WIDTH / 2;
 	G_SNAKE.pos_y = D_GAME_HEIGHT / 2;
 
-	for (unsigned i = 1; i <= G_SNAKE.length; ++i) {
-		G_FIELD_GAME[G_SNAKE.pos_x + i][G_SNAKE.pos_y].lifecell = i;
-	}
+	// unsigned n_size_snake = G_SNAKE.length;
+
+	// for (unsigned i = 1; i <= n_size_snake; ++i) {
+	// 	G_FIELD_GAME[G_SNAKE.pos_x + i][G_SNAKE.pos_y].lifecell = i;
+	// }
+	// for (unsigned i = n_size_snake; i > 0; --i) {
+	// 	G_FIELD_GAME[G_SNAKE.pos_x + i][G_SNAKE.pos_y].lifecell = i;
+	// }
 }
 
 // -------------------------------------------------------
@@ -82,6 +87,8 @@ void move_snake() {
 
 		}
 	}
+
+	check_collizion();
 
 	G_SNAKE.pos_x += G_SNAKE.dir_x;
 	G_SNAKE.pos_y += G_SNAKE.dir_y;
@@ -172,8 +179,22 @@ void default_speed() {
 }
 
 int check_collizion() {
-	// G_FIELD_GAME[G_SNAKE.pos_x][G_SNAKE.pos_y] 
-	return (0);
+	unsigned lifecell = 0;
+	int result = 0;
+	if ((G_SNAKE.pos_x + G_SNAKE.dir_x < D_GAME_WIDTH 
+				&& G_SNAKE.pos_y + G_SNAKE.dir_y < D_GAME_HEIGHT) 
+			&& (G_SNAKE.pos_x + G_SNAKE.dir_x >= 0  
+				&& G_SNAKE.pos_y + G_SNAKE.dir_y >= 0)
+	   ) {
+		lifecell = G_FIELD_GAME[G_SNAKE.pos_x
+			+ G_SNAKE.dir_x][G_SNAKE.pos_y 
+			+ G_SNAKE.dir_y].lifecell;
+		if ((lifecell > 0)) {
+			printf("COLLIZION");
+			result = 1;
+		}
+	}
+	return (result);
 }
 
 void decrement_speed() {
