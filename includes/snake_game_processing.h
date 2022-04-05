@@ -8,6 +8,7 @@
 
 typedef struct {
 	unsigned lifecell;
+	unsigned eat;
 } s_field_game;
 
 typedef struct {
@@ -20,12 +21,17 @@ typedef struct {
 
 extern s_field_game G_FIELD_GAME[D_GAME_WIDTH][D_GAME_HEIGHT];
 extern s_snake G_SNAKE;
+extern unsigned G_SCOPE;
 
 void reset_field_game();
 void reset_snake();
 
 void draw_game_field();
+void draw_information();
+
 void move_snake();
 void input_direction_snake();
+void add_random_eat();
+int check_collizion();
 
 #endif  // SRC_SNAKE_GAME_PROCESSING_H_

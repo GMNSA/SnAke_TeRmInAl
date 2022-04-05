@@ -3,11 +3,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-#include "snake_game_menu.h"
 #include "my_sleep.h"
+#include "snake_game_menu.h"
 #include "snake_game_processing.h"
 #include "snake_game_about.h"
 
+unsigned G_SPEED_LOOP = 100000;
 e_game_state G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 e_game_state transfowramtion_from_menu_to_game_state(int menu_);
 
@@ -41,7 +42,7 @@ void game() {
 				is_run = 0;
 				break;
 		}
-		sleep_us(100000);
+		sleep_us(G_SPEED_LOOP);
 	}
 }
 
@@ -98,8 +99,13 @@ e_game_state transfowramtion_from_menu_to_game_state(int menu_) {
 void update() {
 	move_snake();
 	input_direction_snake();
+	add_random_eat(); 
 }
 
+// -------------------------------------------------------
+
 void draw() {
+	system("clear");
+	draw_information();
 	draw_game_field();
 }

@@ -3,6 +3,8 @@
 
 #include "snake_options_game.h"
 
+extern unsigned G_SPEED_LOOP;
+
 typedef enum {
 	GAME_STATE_INIT = 0,
 	GAME_STATE_PROCESSING,

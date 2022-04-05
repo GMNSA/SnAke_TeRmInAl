@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include "snake_game.h"
 #include "snake_game_about.h"
+#include "snake_game_processing.h"
 
 void output_array(int **arr_, int row_, int col_);
 int **create_array(int row_, int col_);
 
 void test_snake_about();
+void test_random_eat();
 
 int main(void) {
-	test_snake_about();
+	// test_snake_about();
+	test_random_eat();
 	return 0;
 }
 
@@ -43,3 +46,6 @@ void test_snake_about() {
 
 // -------------------------------------------------------
 
+void test_random_eat() {
+	add_random_eat();
+}
