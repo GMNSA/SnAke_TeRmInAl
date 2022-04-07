@@ -1,5 +1,5 @@
 CC=gcc
-LDFLAGS=-c -g -Wall -Werror -Wextra
+LDFLAGS=-c -std=gnu11 -g -Wall -Werror -Wextra
 EXECUTABLE=a.out
 SOURCES=srcs/main.c srcs/f_log_file.c srcs/snake_game.c srcs/snake_game_menu.c srcs/my_sleep.c srcs/snake_game_processing.c srcs/snake_game_about.c srcs/snake_game_end.c srcs/work_with_files.c srcs/my_struct.c
 OBJECTS=$(SOURCES:.c=.o)
