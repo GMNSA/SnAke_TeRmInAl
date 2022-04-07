@@ -7,6 +7,7 @@
 #include "snake_game_menu.h"
 #include "snake_game_processing.h"
 #include "snake_game_about.h"
+#include "work_with_files.h"
 
 unsigned G_SPEED_LOOP = DEFAULT_SPEED;
 e_game_state G_GAME_CURRENT_STATE = GAME_STATE_INIT;

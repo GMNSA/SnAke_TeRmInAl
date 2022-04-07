@@ -5,6 +5,7 @@ typedef enum {
 	ERROR_LOG_OK = 0,
 	ERROR_LOG_CREATE_DYNAMIC_ARRAY ,
 	ERROR_LOG_READ_FILE,
+	ERROR_LOG_STACK_LIST_GAMER_DYNAMIC_ARRAY
 } e_log_error;
 
 void create_log(char const *text_, char const *filename_);

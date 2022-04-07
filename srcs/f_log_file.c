@@ -16,6 +16,8 @@ void create_log(char const *text_, char const *filename_) {
 			text_= "Create Dynamic Array ERROR ";
 		} else if (G_ERROR_LOG == ERROR_LOG_READ_FILE) {
 			text_= "Error Read file ERROR ";
+		} else if (G_ERROR_LOG == ERROR_LOG_STACK_LIST_GAMER_DYNAMIC_ARRAY) {
+			text_ = "Error craete dynamic memory [list gamer] ";
 		} else {
 			text_ = "Ok <----> ";
 		}

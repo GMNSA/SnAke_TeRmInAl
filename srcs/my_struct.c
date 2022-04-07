@@ -1,0 +1,170 @@
+/* my_struct.c */
+
+#include "my_struct.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "f_log_file.h"
+#include <string.h>
+
+#define ft_unuased(num) (void)(num)
+
+s_list_gamer *init_list_gamer(s_gamer *gamer_) {
+	s_list_gamer *lst = NULL;
+	if (!(lst = (s_list_gamer*)calloc(1, sizeof(s_list_gamer)))) {
+		G_ERROR_LOG = ERROR_LOG_STACK_LIST_GAMER_DYNAMIC_ARRAY;
+		create_log(NULL, NULL);
+		exit(-1);
+	}
+
+	lst->gamer = (s_gamer *)calloc(1, sizeof(s_list_gamer));
+
+	if (gamer_) {
+		strncpy(lst->gamer->name, gamer_->name, MAX_NAME_GAMER);
+		lst->gamer->score = gamer_->score;
+		lst->next = NULL;
+	} else {
+		// TODO: ERROR
+	}
+	return (lst);
+}
+
+
+s_list_gamer *add_list_gamer(s_list_gamer **list_,
+	const char *name_, unsigned score_) {
+	s_list_gamer *lst = NULL;
+	s_list_gamer *tmp = NULL;
+
+	ft_unuased(tmp);
+	ft_unuased(list_);
+
+	s_gamer s;
+	strncpy(s.name, name_, MAX_NAME_GAMER - 1);
+	s.score = score_;
+	
+	if (*(list_) == NULL) {
+		(*list_) = init_list_gamer(&s);
+	} else {
+		if (!(lst = (s_list_gamer*)calloc(1, sizeof(s_list_gamer)))) {
+			G_ERROR_LOG = ERROR_LOG_STACK_LIST_GAMER_DYNAMIC_ARRAY;
+			create_log(NULL, NULL);
+			exit(-1);
+		}
+
+		lst->gamer = (s_gamer *)calloc(1, sizeof(s_list_gamer));
+
+		tmp = *list_;
+		strncpy(lst->gamer->name, s.name, MAX_NAME_GAMER);
+		lst->gamer->score = s.score;
+		lst->next = NULL;
+
+		while (tmp->next) {
+			tmp = tmp->next;
+		}
+
+		tmp->next = lst;
+	} 
+
+	return (lst);
+}
+
+
+s_list_gamer *sort_list_gamer(s_list_gamer **head_) {
+	// TODO: sorting sort list
+
+	// s_list_gamer *tmp = NULL;
+	// for (s_list_gamer *node = *head_; node->next; node = node->next) {
+	// 	if (node->gamer->score < node->next->gamer->score) {
+	// 		tmp = node;
+	// 		node = node->next;
+	// 		node->next = tmp;
+	// 	}
+	// }
+
+	return (*head_);
+}
+
+int is_more_score_list_gamer(s_list_gamer *list_, s_gamer *gamer_) {
+	int is_more = 0;
+	while (list_) {
+		if (gamer_->score > list_->gamer->score) {
+			is_more = 1;
+		}
+		list_ = list_->next;
+	}
+	return (is_more);
+}
+
+s_list_gamer *pop_list_gamer(s_list_gamer *lst_) {
+	s_list_gamer *data = lst_;
+	s_list_gamer *tmp = lst_;
+	int i = 0;
+
+	if (lst_) {
+		if (lst_->next == NULL) {
+			free(lst_->gamer);
+			lst_->gamer = NULL;
+			free(lst_);
+			lst_ = NULL;
+		} else {
+			while (tmp->next) {
+				++i;
+				tmp = tmp->next;
+			}
+			if (tmp) {
+				free(tmp->gamer);
+				tmp->gamer = NULL;
+				free(tmp);
+				tmp = NULL;
+
+				while (data->next && --i > 0) {
+					data = data->next;
+				}
+				data->next = NULL;
+			}
+		}
+	}
+
+	return (lst_);
+}
+
+int size_list_gamer(s_list_gamer *lst_) {
+	int i = 0;
+	for (; lst_; lst_ = lst_->next, ++i) {
+	}
+	return (i);
+}
+
+// -------------------------------------------------------
+
+void output_list_gamer(s_list_gamer *list_) {
+	while (list_) {
+		printf("name: %s\n", list_->gamer->name);
+		printf("score: %d\n", list_->gamer->score);
+		list_ = list_->next;
+	}
+}
+
+void output_gamer(s_gamer *gamer_) {
+	if (gamer_) {
+		printf("name: %s\n", gamer_->name);
+		printf("score: %d\n", gamer_->score);
+	}
+}
+
+// -------------------------------------------------------
+
+s_list_gamer *free_list_gamer(s_list_gamer *list_) {
+	s_list_gamer *tmp = NULL;
+
+	while (list_) {
+		if (list_->gamer) {
+			free (list_->gamer);
+			list_->gamer = NULL;
+		}
+		tmp = list_;
+		list_ = list_->next;
+		free (tmp);
+		tmp = NULL;
+	}
+	return (list_);
+}

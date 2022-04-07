@@ -7,4 +7,6 @@
 #define D_GAME_HEIGHT 25
 #define DEFAULT_SPEED 70000
 
+extern unsigned G_SCOPE;
+
 #endif  // SRC_SNAKE_OPTIONS_GAME_H_
