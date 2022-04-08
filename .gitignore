@@ -59,3 +59,4 @@ tags
 *.py
 TODO.txt
 TEST
+log_file.txt

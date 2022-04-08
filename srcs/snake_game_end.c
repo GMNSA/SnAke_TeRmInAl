@@ -3,26 +3,27 @@
 #include "snake_game_end.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "my_struct.h"
 #include "work_with_files.h"
-#include <string.h>
+#include "f_log_file.h"
 
 void display_end() {
-	char c;
 	printf("GAME OVER\n");
 	char *text = read_file("data/scores.txt");
 
 	s_list_gamer *lst = NULL;
 
-	G_SCOPE = 30;
+	// G_SCOPE = 30;
+	lst = split_text_list_gamer(text);
 	printf("Youre score %d\n", G_SCOPE);
 	s_gamer gamer = {"", G_SCOPE};
 
 	char *name = NULL;
 	if (is_more_score_list_gamer(lst, &gamer)) {
 		printf("Enter the name: ");
-		 name = input_text();
-		strncpy(gamer.name, name, MAX_SIZE_NAME);
+		name = input_text();
+		strncpy(gamer.name, name, 2);
 		gamer.score = G_SCOPE;
 		printf("name: %s\n", gamer.name);
 		printf("score: %d\n", gamer.score);
@@ -32,9 +33,6 @@ void display_end() {
 		free_list_gamer(lst);
 		free(text);
 	}
-
-	printf("\nPRESS ON KEY");
-	while ((c = getchar() != '\n') ) {
-	}
+	press_on_key();
 }
 

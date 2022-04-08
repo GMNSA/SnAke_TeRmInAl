@@ -10,6 +10,7 @@
 #include "snake_game_about.h"
 #include "work_with_files.h"
 #include "snake_game_scores.h"
+#include "snake_game_end.h"
 
 unsigned G_SPEED_LOOP = DEFAULT_SPEED;
 e_game_state G_GAME_CURRENT_STATE = GAME_STATE_INIT;
@@ -99,7 +100,8 @@ void game_exit() {
 }
 
 void game_end_game() {
-	printf("END GAME\n");
+	display_end();
+	G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 }
 
 // -------------------------------------------------------

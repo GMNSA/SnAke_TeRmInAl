@@ -212,7 +212,11 @@ void test_sort_list_gamer() {
 	add_list_gamer(&lst, "Minka", 17);
 	add_list_gamer(&lst, "Villa", 197);
 
-	// free_list_gamer(lst);
+	output_list_gamer(lst);
+	printf("\nSorted \n");
+	sort_list_gamer(&lst);
+	output_list_gamer(lst);
+	free_list_gamer(lst);
 }
 
 // -------------------------------------------------------

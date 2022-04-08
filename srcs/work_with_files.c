@@ -44,9 +44,18 @@ char *input_text() {
 	char c;
 	int end = -1;
 	char *text = (char *)calloc(MAX_SIZE_NAME + 1, sizeof(char));
+	int limit = MAX_SIZE_NAME / 2;
 
-	while ((c = getchar()) != '\n' && c != EOF && ++end < MAX_SIZE_NAME) {
-		text[end] = c;
+	while ((c = getchar()) != '\n') {
+		if (c == EOF) {
+			G_ERROR_LOG = ERROR_LOG_CTRL_D;
+			create_log(NULL, NULL);
+		}
+		if (++end >= limit) {
+			break;
+		} else {
+			text[end] = c;
+		}
 	}
 
 	if (strlen(text) == 0) {
