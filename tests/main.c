@@ -4,6 +4,7 @@
 #include "snake_game_about.h"
 #include "snake_game_processing.h"
 #include "snake_game_end.h"
+#include "snake_game_end.h"
 #include "work_with_files.h"
 #include "my_struct.h"
 #include <assert.h>
@@ -19,6 +20,7 @@ void test_is_more_score_list_gamer();
 void test_pop_less_score_list_gamer();
 void test_size_list_gamer();
 void test_sort_list_gamer();
+void test_split_text_list_gamer();
 
 int main(void) {
 #ifdef 	_TEST_1
@@ -51,6 +53,10 @@ int main(void) {
 
 #ifdef 	_TEST_8
 	test_sort_list_gamer();
+#endif 	// _POP_LESS_SCORE_
+
+#ifdef 	_TEST_9
+	test_split_text_list_gamer();
 #endif 	// _POP_LESS_SCORE_
 
 #ifdef _TEST_
@@ -207,4 +213,17 @@ void test_sort_list_gamer() {
 	add_list_gamer(&lst, "Villa", 197);
 
 	// free_list_gamer(lst);
+}
+
+// -------------------------------------------------------
+
+void test_split_text_list_gamer() {
+	char *text = read_file("data/scores.txt");
+	s_list_gamer *scores = split_text_list_gamer(text);
+	output_list_gamer(scores);
+	printf("split test_list_gamer OK\n");
+	free_list_gamer(scores);
+	if (text) {
+		free(text);
+	}
 }

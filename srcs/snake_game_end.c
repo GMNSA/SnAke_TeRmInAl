@@ -12,21 +12,7 @@ void display_end() {
 	printf("GAME OVER\n");
 	char *text = read_file("data/scores.txt");
 
-	char *p = text;
-	int n_n = 0;;
-	int begin = 0;
-	int end = 0;;
 	s_list_gamer *lst = NULL;
-
-	while (*p != '\0') {
-		++end;
-		if (*p == '\n') {
-			add_to_list(&lst, text, begin, end);
-			++n_n;
-			begin = end;
-		}
-		++p;
-	}
 
 	G_SCOPE = 30;
 	printf("Youre score %d\n", G_SCOPE);
@@ -52,26 +38,3 @@ void display_end() {
 	}
 }
 
-void add_to_list(s_list_gamer **lst_,
-		char *text_,
-		unsigned begin_,
-		unsigned end_) {
-	char name[30] = {"\0"};
-	char score[30] = {"\0"};;
-	int is_score = 0;
-	int begin_name = -1;
-	int begin_score = -1;
-
-	for (; begin_ < end_; ++begin_) {
-		if (!is_score ) {
-			if (text_[begin_] != ' ') {
-				name[++begin_name] = text_[begin_];
-			} else {
-				is_score = 1;
-			}
-		} else {
-			score[++begin_score] = text_[begin_];
-		}
-	}
-	add_list_gamer(lst_, name, atoi(score));
-}

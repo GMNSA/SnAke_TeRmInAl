@@ -29,4 +29,6 @@ int size_list_gamer(s_list_gamer *lst_);
 void output_list_gamer(s_list_gamer *list_);
 void output_gamer(s_gamer *gamer_);
 
+s_list_gamer *split_text_list_gamer(char *text_);
+
 #endif  // SRC_MY_STRUCT_H_

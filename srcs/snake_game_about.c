@@ -10,12 +10,9 @@
 
 void display_about(char *text_) {
 	unsigned n_text = strlen(text_);
-	char c = '\n';
 	for (unsigned i = 0; i < n_text; ++i) {
 		printf("%c", text_[i]);
 		sleep_us(1000);
 	}
-	printf("\nPRESS ON KEY");
-	while ((c = getchar() != '\n')) {
-	}
+	press_on_key();
 }

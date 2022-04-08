@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include "f_log_file.h"
 #include "my_sleep.h"
 #include "snake_game_menu.h"
 #include "snake_game_processing.h"
 #include "snake_game_about.h"
 #include "work_with_files.h"
+#include "snake_game_scores.h"
 
 unsigned G_SPEED_LOOP = DEFAULT_SPEED;
 e_game_state G_GAME_CURRENT_STATE = GAME_STATE_INIT;
@@ -34,6 +36,9 @@ void game() {
 				break;
 			case GAME_STATE_MENU:
 				game_menu();
+				break;
+			case GAME_STATE_SCORES:
+				game_scores();
 				break;
 			case GAME_STATE_ABOUT:
 				game_about();
@@ -81,7 +86,15 @@ void game_about() {
 	G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 }
 
+void game_scores() {
+	system("clear");
+	printf("The best scores (*)(*)  <---------   >>>>\n\n");
+	display_scores();
+	G_GAME_CURRENT_STATE = GAME_STATE_MENU;
+}
+
 void game_exit() {
+	system("clear");
 	printf("EXIT\n");
 }
 
@@ -95,6 +108,8 @@ e_game_state transfowramtion_from_menu_to_game_state(int menu_) {
 	e_game_state result;
 	if (menu_  == SNAKE_MENU_START_GAME) {
 		result = GAME_STATE_PROCESSING;
+	} else if (menu_ ==  SNAKE_MENU_SCORES_GAME) {
+		result = GAME_STATE_SCORES;
 	} else if (menu_ ==  SNAKE_MENU_ABOUT_GAME) {
 		result = GAME_STATE_ABOUT;
 	} else if (menu_ == SNAKE_MENU_EXIT_GAME) {

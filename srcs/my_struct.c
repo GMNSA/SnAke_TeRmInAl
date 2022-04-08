@@ -7,6 +7,10 @@
 #include <string.h>
 
 #define ft_unuased(num) (void)(num)
+void add_to_list(s_list_gamer **lst_,
+		char *text_,
+		unsigned begin_,
+		unsigned end_);
 
 s_list_gamer *init_list_gamer(s_gamer *gamer_) {
 	s_list_gamer *lst = NULL;
@@ -138,8 +142,7 @@ int size_list_gamer(s_list_gamer *lst_) {
 
 void output_list_gamer(s_list_gamer *list_) {
 	while (list_) {
-		printf("name: %s\n", list_->gamer->name);
-		printf("score: %d\n", list_->gamer->score);
+		printf("%s\t%d\n", list_->gamer->name, list_->gamer->score);
 		list_ = list_->next;
 	}
 }
@@ -167,4 +170,49 @@ s_list_gamer *free_list_gamer(s_list_gamer *list_) {
 		tmp = NULL;
 	}
 	return (list_);
+}
+
+// -------------------------------------------------------
+
+s_list_gamer *split_text_list_gamer(char *text_) {
+	s_list_gamer *lst = NULL;
+	char *p = text_;
+	int n_n = 0;;
+	int begin = 0;
+	int end = 0;;
+
+	while (*p != '\0') {
+		++end;
+		if (*p == '\n') {
+			add_to_list(&lst, text_, begin, end);
+			++n_n;
+			begin = end;
+		}
+		++p;
+	}
+	return (lst);
+}
+
+void add_to_list(s_list_gamer **lst_,
+		char *text_,
+		unsigned begin_,
+		unsigned end_) {
+	char name[30] = {"\0"};
+	char score[30] = {"\0"};;
+	int is_score = 0;
+	int begin_name = -1;
+	int begin_score = -1;
+
+	for (; begin_ < end_; ++begin_) {
+		if (!is_score ) {
+			if (text_[begin_] != ' ') {
+				name[++begin_name] = text_[begin_];
+			} else {
+				is_score = 1;
+			}
+		} else {
+			score[++begin_score] = text_[begin_];
+		}
+	}
+	add_list_gamer(lst_, name, atoi(score));
 }

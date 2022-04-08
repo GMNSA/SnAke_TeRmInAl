@@ -8,6 +8,7 @@ int G_SNAKE_MENU_CURRENT_STATE = SNAKE_MENU_START_GAME;
 
 char const *G_SNAKE_MENU[SNAKE_MENU_END] = {
 	"Start Menu",
+	"Scores",
 	"About",
 	"Exit"
 };
