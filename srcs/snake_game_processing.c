@@ -187,7 +187,6 @@ int check_collizion() {
 			+ G_SNAKE.dir_x][G_SNAKE.pos_y 
 			+ G_SNAKE.dir_y].lifecell;
 		if ((lifecell > 0)) {
-			printf("COLLIZION");
 			result = 1;
 		}
 	}

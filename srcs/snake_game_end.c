@@ -21,16 +21,19 @@ void display_end() {
 
 	char *name = NULL;
 	if (is_more_score_list_gamer(lst, &gamer)) {
-		printf("Enter the name: ");
+		printf("\n<--------------     > ENTER THE NAME: ");
 		name = input_text();
 		strncpy(gamer.name, name, 2);
 		gamer.score = G_SCOPE;
-		printf("name: %s\n", gamer.name);
-		printf("score: %d\n", gamer.score);
+		pop_list_gamer(lst);
 		add_list_gamer(&lst, name, G_SCOPE);
+		sort_list_gamer(&lst);
+		write_to_file_list_gamer(lst, NULL);
 		printf("\n");
 		output_list_gamer(lst);
-		free_list_gamer(lst);
+	}
+	free_list_gamer(lst);
+	if (text) {
 		free(text);
 	}
 	press_on_key();

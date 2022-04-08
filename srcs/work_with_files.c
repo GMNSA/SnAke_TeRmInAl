@@ -8,6 +8,7 @@
 #include "f_log_file.h"
 
 const char *G_FILENAME_ABOUT = "about.txt";
+const char *G_FILENAME_SCORES = "data/scores.txt";
 
 char *read_file(char const *filename_) {
 	FILE *fio = NULL;
@@ -62,4 +63,32 @@ char *input_text() {
 		strncpy(text, "unknown", MAX_SIZE_NAME);
 	}
 	return (text);
+}
+
+// -------------------------------------------------------
+
+void write_to_file_list_gamer(s_list_gamer *lst_, char const *filename_) {
+	FILE *fin = NULL;
+
+	if (lst_ == NULL) {
+		G_ERROR_LOG = ERROR_LOG_WRITE_FILE;
+		create_log("Error write to file (s_list_gamer) <--> NULL ", NULL);
+	}
+
+	if (filename_ == NULL) {
+		filename_ = G_FILENAME_SCORES;
+	}
+
+	fin = fopen(filename_, "w");
+
+	if (fin) {
+		while (lst_) {
+			fprintf(fin, "%s %d\n", lst_->gamer->name, lst_->gamer->score);
+			lst_ = lst_->next;
+		}
+		fclose(fin);
+	} else {
+		G_ERROR_LOG = ERROR_LOG_WRITE_FILE;
+		create_log(NULL, NULL);
+	}
 }

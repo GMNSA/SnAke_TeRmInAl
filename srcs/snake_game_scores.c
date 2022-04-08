@@ -5,6 +5,7 @@
 #include "work_with_files.h"
 #include "my_struct.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void display_scores() {
 	char *text = read_file("data/scores.txt");
@@ -12,6 +13,9 @@ void display_scores() {
 	s_list_gamer *scores = split_text_list_gamer(text);
 	output_list_gamer(scores);
 	free_list_gamer(scores);
+	if (text) {
+		free(text);
+	}
 
 	press_on_key();
 }

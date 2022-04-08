@@ -8,6 +8,7 @@
 #include "snake_game_menu.h"
 #include "snake_game_processing.h"
 #include "snake_game_about.h"
+#include "snake_options_game.h"
 #include "work_with_files.h"
 #include "snake_game_scores.h"
 #include "snake_game_end.h"
@@ -64,6 +65,8 @@ void game() {
 void game_init() {
 	reset_field_game();
 	reset_snake();
+	G_SCOPE = 0;
+	G_SPEED_LOOP = DEFAULT_SPEED;
 }
 
 void game_processing() {
@@ -91,7 +94,7 @@ void game_scores() {
 	system("clear");
 	printf("The best scores (*)(*)  <---------   >>>>\n\n");
 	display_scores();
-	G_GAME_CURRENT_STATE = GAME_STATE_MENU;
+	G_GAME_CURRENT_STATE = GAME_STATE_INIT;
 }
 
 void game_exit() {

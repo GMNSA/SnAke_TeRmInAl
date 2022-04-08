@@ -217,6 +217,7 @@ void test_sort_list_gamer() {
 	sort_list_gamer(&lst);
 	output_list_gamer(lst);
 	free_list_gamer(lst);
+	printf("test sort_list_gamer OK\n");
 }
 
 // -------------------------------------------------------
@@ -230,4 +231,5 @@ void test_split_text_list_gamer() {
 	if (text) {
 		free(text);
 	}
+	printf("test split_text_list_gamer OK\n");
 }

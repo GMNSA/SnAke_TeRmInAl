@@ -73,17 +73,19 @@ s_list_gamer *add_list_gamer(s_list_gamer **list_,
 
 
 s_list_gamer *sort_list_gamer(s_list_gamer **head_) {
-	// TODO: sorting sort list
-
-	// s_list_gamer *tmp = NULL;
-	// for (s_list_gamer *node = *head_; node->next; node = node->next) {
-	// 	if (node->gamer->score < node->next->gamer->score) {
-	// 		tmp = node;
-	// 		node = node->next;
-	// 		node->next = tmp;
-	// 	}
-	// }
-
+	s_gamer *tmp = NULL;
+	int end = 1;
+	while (end) {
+		end = 0;
+		for (s_list_gamer *node = *head_; node->next; node = node->next) {
+			if (node->gamer->score < node->next->gamer->score) {
+				tmp = node->gamer;
+				node->gamer = node->next->gamer;
+				node->next->gamer = tmp;
+				end = 1;
+			}
+		}
+	}
 	return (*head_);
 }
 

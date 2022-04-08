@@ -17,6 +17,8 @@ void create_log(char const *text_, char const *filename_) {
 			text_= "Create Dynamic Array ERROR ";
 		} else if (G_ERROR_LOG == ERROR_LOG_READ_FILE) {
 			text_= "Error Read file ERROR ";
+		} else if (G_ERROR_LOG == ERROR_LOG_WRITE_FILE) {
+			text_= "Error Write file ERROR ";
 		} else if (G_ERROR_LOG == ERROR_LOG_STACK_LIST_GAMER_DYNAMIC_ARRAY) {
 			text_ = "Error craete dynamic memory [list gamer] ";
 		} else if (G_ERROR_LOG == ERROR_LOG_CTRL_D) {
@@ -45,10 +47,15 @@ void create_log(char const *text_, char const *filename_) {
 
 void press_on_key() {
 	char c;
+	int run = 1;
 
 	printf("\nPRESS ON KEY");
-	while ((c = getchar() != '\n') ) {
-		if (c != EOF) {
+	while (run) {
+		c = getchar();
+		if (c == '\n') {
+			run = 0;
+		}
+		if (c == EOF) {
 			G_ERROR_LOG = ERROR_LOG_CTRL_D;
 			create_log(NULL, NULL);
 		}
