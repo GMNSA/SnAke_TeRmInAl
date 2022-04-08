@@ -17,11 +17,11 @@ make
 
 ## Control
 
-w - up
-a - left
-s - down
-d - right
-esc - menu
+w - up <br />
+a - left <br />
+s - down <br />
+d - right <br />
+esc - menu <br />
 
 ## License
 
