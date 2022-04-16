@@ -12,8 +12,9 @@ There are several hundred snake games for iOS alone.
 
 ## Installation
 
-Linux gcc version 11.2.0 (GCC) 
-make
+Linux gcc version 11.2.0 (GCC) <br />
+make - (build) <br />
+make clean - (clean)
 
 ## Control
 
@@ -22,7 +23,3 @@ a - left <br />
 s - down <br />
 d - right <br />
 esc - menu <br />
-
-## License
-
-free
